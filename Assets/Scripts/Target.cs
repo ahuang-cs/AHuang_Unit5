@@ -8,16 +8,20 @@ public class Target : MonoBehaviour
     public float maxForce = 15f;
     public float minTorque = -10f;
     public float maxTorque = 10f;
+    public int pointValue;
+    public ParticleSystem destroyParticleSystem;
 
     private const float minXPos = -3f;
     private const float maxXPos = 3f;
     private const float yPos = -2f;
 
     private Rigidbody rb;
+    private GameManager gm;
 
     // Start is called before the first frame update
     void Start()
     {
+        gm = GameObject.Find("Game Manager").GetComponent<GameManager>();
         rb = GetComponent<Rigidbody>();
         applyRandomForce();
         applyRandomTorque();
@@ -39,6 +43,8 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+        gm.AddToScore(pointValue);
+        Instantiate(destroyParticleSystem, transform.position, destroyParticleSystem.transform.rotation);
         Destroy(gameObject);
     }
 

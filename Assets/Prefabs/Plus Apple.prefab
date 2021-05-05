@@ -127,3 +127,6 @@ MonoBehaviour:
   maxForce: 15
   minTorque: -10
   maxTorque: 10
+  pointValue: 3
+  destroyParticleSystem: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb,
+    type: 3}
