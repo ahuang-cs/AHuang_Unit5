@@ -43,14 +43,21 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
-        gm.AddToScore(pointValue);
-        Instantiate(destroyParticleSystem, transform.position, destroyParticleSystem.transform.rotation);
-        Destroy(gameObject);
+        if (!gm.IsGameOver())
+        {
+            gm.AddToScore(pointValue);
+            Instantiate(destroyParticleSystem, transform.position, destroyParticleSystem.transform.rotation);
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Hazard"))
+        {
+            gm.GameOver();
+        }
     }
     // Update is called once per frame
     void Update()
