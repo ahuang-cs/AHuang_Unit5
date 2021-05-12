@@ -41,13 +41,18 @@ public class Target : MonoBehaviour
         transform.position = new Vector3(Random.Range(minXPos, maxXPos), yPos);
     }
 
+    public void DestroyTarget()
+    {
+        Instantiate(destroyParticleSystem, transform.position, destroyParticleSystem.transform.rotation);
+        Destroy(gameObject);
+    }
+
     private void OnMouseDown()
     {
         if (!gm.IsGameOver())
         {
             gm.AddToScore(pointValue);
-            Instantiate(destroyParticleSystem, transform.position, destroyParticleSystem.transform.rotation);
-            Destroy(gameObject);
+            DestroyTarget();
         }
     }
 
