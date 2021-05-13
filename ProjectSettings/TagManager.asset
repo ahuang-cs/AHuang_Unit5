@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Hazard
   - Target
+  - Blade Trail
+  - Blade
+  - Sensor
   layers:
   - Default
   - TransparentFX

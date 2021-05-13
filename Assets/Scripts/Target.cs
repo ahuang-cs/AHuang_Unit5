@@ -47,21 +47,19 @@ public class Target : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnMouseDown()
+    private void OnTriggerEnter(Collider other)
     {
-        if (!gm.IsGameOver())
+        if(other.gameObject.CompareTag("Sensor"))
+        {
+            if (gameObject.CompareTag("Target"))
+            {
+                gm.GameOver();
+            }
+            Destroy(gameObject);
+        }  else if (other.gameObject.CompareTag("Blade"))
         {
             gm.AddToScore(pointValue);
             DestroyTarget();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Destroy(gameObject);
-        if (!gameObject.CompareTag("Hazard"))
-        {
-            gm.GameOver();
         }
     }
     // Update is called once per frame
